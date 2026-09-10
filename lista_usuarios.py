@@ -20,3 +20,4 @@ for linha in resultados:
 
 #fecha a conexão
 conn.close()
+#teste
