@@ -16,3 +16,4 @@ conn.executemany("INSERT INTO autores(nome) VALUES(?)",
 
 #confirmando a criação e os inserts da tabela autores.
 conn.commit()
+#
