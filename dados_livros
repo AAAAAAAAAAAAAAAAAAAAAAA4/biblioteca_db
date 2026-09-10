@@ -1,0 +1,34 @@
+import sqlite3
+
+#conectando o banco de dados. Caso não exista, o banco é criado.
+conn = sqlite3.connect("biblioteca.db")
+
+#apaga a tabela licros
+conn.execute("DROP TABLE IF EXISTS livros")
+
+#montando sql de criacao de livros
+sql = ("CREATE TABLE editoras (id INTEGER PRIMARY KEY AUTOINCREMENT \
+             , nome TEXT NOT NULL, autor_id INTEGER REGERENCES autores(id) \
+             editora_id INTEGER REFERENCES editoras(id), \
+             ano_publicacao INTEGER, \
+            edicao INTEGER, \
+            disponivel BOOLEAN NOT NULL DEFAULT 1 CHECK (diponivel) IN (0,1)")
+
+
+#cria a tabela editoras
+conn.execute(sql_create)
+
+#montando o sql insert
+sql_insert = """INSERT INTO editoras(titulo, autor_id, editora_id, ano_publicacao, edicao, disponivel, VALUES(?. ?, ?, ?, ?, ?)"""
+
+
+#cria a tabela livros
+conn.execute("CREATE TABLE livros (id INTEGER PRIMARY KEY AUTOINCREMENT \
+             , nome TEXT NOT NULL)")
+
+#inserindo os registros na tabela editoras
+conn.executemany(sql_insert,[("Moderna",), ("Nova",)])
+
+#confirmando a criação e os inserts da tabela editoras.
+conn.commit()
+
